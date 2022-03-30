@@ -92,6 +92,34 @@ cd front-end/h5 && yarn && yarn build:engine && yarn dev
 
 - 如果遇到接口 403 问题，请参照 [`快速开始`](https://ly525.github.io/luban-h5/zh/getting-started/quick-start.html) 章节，搜索关键字：403 即可
 
+## 开发指南
+``` sh
+# 安装依赖
+npm install yarn pm2 -g
+
+# 拉取代码
+git clone https://github.com/ly525/luban-h5
+
+# 切换代码目录
+cd luban-h5
+
+# 删除冗余文件
+rm -rf ./yarn.lock
+rm -rf ./docs/yarn.lock
+rm -rf ./front-end/h5/yarn.lock
+rm -rf ./back-end/h5-api/yarn.lock
+rm -rf ./front-end/h5/src/components/core/yarn.lock
+
+# 启动后端
+cd back-end/h5-api && yarn && yarn dev
+
+# 启动前端
+cd front-end/h5 && yarn && yarn build:engine && yarn dev
+
+# 访问前端页面： http://localhost:1337
+# 访问后端页面： http://localhost:1337/admin
+```
+
 ### 交流群
 
 | 钉钉群  | 微信公众号  |  微信 |
