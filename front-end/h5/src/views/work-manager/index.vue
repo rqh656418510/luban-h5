@@ -120,7 +120,7 @@ export default {
               }}
             >
               <a-menu-item key="1">
-                <span>someone@luban</span>
+                <span>someone@qq.com</span>
               </a-menu-item>
               <a-menu-divider />
               <a-menu-item key="2">
