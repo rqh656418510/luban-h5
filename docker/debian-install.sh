@@ -7,7 +7,7 @@
  # @LastEditors  : ly525
  # @LastEditTime : 2020-01-11 17:06:44
  # @FilePath: /luban-h5/deploy/debian-install.sh
- # @Github: https://github.com/ly525/luban-h5
+ # @Github: https://github.com/rqh656418510/luban-h5
  # @Description:
  ## #!en: One-Click Setup Script to Install Luban-H5 on Debian 9
  ## #!zh: 鲁班H5 Debian 9 一键安装脚本
@@ -30,7 +30,7 @@
 # 2.1 宿主机访问 「鲁班前端」：http://localhost:1235, 即可看到鲁班的前端了
 
 # [三、问题反馈]
-# GitHub：https://github.com/ly525/luban-h5
+# GitHub：https://github.com/rqh656418510/luban-h5
 ######################################################
 
 #
@@ -93,25 +93,6 @@ function base_install {
 #   fi
 # }
 
-function install_nvm {
-  if [ -a $HOME/.nvm ]; then
-    already nvm
-  else
-    installing nvm
-    #   -q,  --quiet               安静模式(无信息输出)
-    #   -O,  --output-document=FILE    将文档写入 FILE
-    wget -qO- https://raw.githubusercontent.com/creationix/nvm/master/install.sh | bash
-    export NVM_DIR=$HOME/.nvm;
-    [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
-    [ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
-    # source $HOME/.nvm/nvm.sh;
-    # . ~/.nvm/nvm.sh;
-    # source ~/.bashrc
-    nvm --version
-    success nvm
-  fi
-}
-
 function install_yarn {
   yarn -v &>/dev/null
   if [ $? == "0" ]; then
@@ -136,7 +117,7 @@ function set_npm_mirror {
     already set_npm_mirror
   else
     installing set_npm_mirror
-    wget -qO- https://raw.githubusercontent.com/ly525/luban-h5/dev/deploy/mirror.sh | bash
+    wget -qO- https://raw.githubusercontent.com/rqh656418510/luban-h5/master/deploy/mirror.sh | bash
     success set_npm_mirror
   fi
 }
@@ -152,8 +133,6 @@ function install_strapi {
     # 这里将mac怀疑安全性的包采取信任
     # https://github.com/strapi/strapi/issues/2787
     npm install --unsafe-perm=true --allow-root -g strapi@alpha
-    # . ~/.nvm/nvm.sh
-    # source $HOME/.nvm/nvm.sh;
     strapi -v
     success Strapi
   fi
@@ -166,7 +145,6 @@ function install_pm2 {
   else
     installing PM2
     npm install -g pm2@latest
-    . ~/.nvm/nvm.sh
     pm2 update
     success PM2
   fi
@@ -261,8 +239,8 @@ function install_luban-h5 {
     # 解决NodeJs版本依赖问题
     yarn config set ignore-engines true
 
-    cd ~/
-    git clone https://github.com/ly525/luban-h5
+    cd /root
+    git clone https://github.com/rqh656418510/luban-h5
     cd luban-h5
 
     # # 鲁班前端
@@ -306,7 +284,6 @@ base_install python
 base_install build-essential
 
 
-install_nvm
 install_yarn
 set_npm_mirror
 install_strapi
